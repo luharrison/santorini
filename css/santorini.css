@@ -1,0 +1,78 @@
+
+body {
+    background: red;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#screen {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+#screen.active {
+    display: block;
+}
+
+
+
+/* default */
+
+.button {
+    position: relative;
+    background: white;
+    width: 100%;
+    max-width: 120px;
+    min-width: 80px;
+    padding: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.button.disabled {
+}
+
+.button.disabled:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    overflow:hidden;
+}
+
+.button p {
+    display: block;
+}
+
+/* pos */ 
+
+.pos-cen-x {
+    transform: translateX(-50%);
+    margin-left: 50%;
+    position: absolute;
+}
+
+.pos-cen-y {
+    transform: translateY(-50%);
+    margin-top: 50%;
+    position: absolute;
+}
+
+.pos-float-left {
+    float: left;
+}
+
+.pos-float-right {
+    float: right;
+}

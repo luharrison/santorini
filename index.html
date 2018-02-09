@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://madebyluke.com/projects/santorini/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
+    <link rel="stylesheet" href="css/santorini.css">
+    <link rel="stylesheet" href="css/santorini_custom.css">
+    <script src="src/bgl/DisplayManager.js"></script>
+    <script src="src/bgl/Game.js"></script>
+
+</head>
+
+<body>
+
+
+    <div id="game">
+        <div id="screenManager">
+
+            <div id="title" class="screen" style="display: block;">
+                TITLE
+
+                <div class="menu pos-cen-x">
+                    <div id="new" class="btn button" data-action="screen.set.lobby">
+                        mode_new
+                    </div>
+
+                    <div id="resume" class="btn button">
+                        mode_resume
+                    </div>
+
+                    <div id="settings" class="btn button">
+                        mode_settings
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="lobby" class="screen" s="" style="display: none;">
+                LOBBY
+
+                <div class="rooms">
+                    <div id="lobby_room_0" class="room btn active">
+                        <p>Room 0</p>
+                        <p>Empty</p>
+                    </div>
+                    <div id="lobby_room_1" class="room btn empty">
+                        <p>Room 1</p>
+                        <p>Empty</p>
+                    </div>
+                    <div id="lobby_room_2" class="room btn full">
+                        <p>Room 2</p>
+                        <p>Empty</p>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div id="lobby_back" class="btn button pos-float-left">back</div>
+                    <div id="lobby_join" class="btn button disabled pos-float-right">lobby_join</div>
+                </div>
+            </div>
+
+
+            <div id="game" class="screen" style="display: none;">
+                GAME
+
+            </div>
+
+
+
+            <div id="result" class="screen" style="display: none;">
+                RESULT
+            </div>
+        </div>
+    </div>
+
+    <script src="src/santorini.js"></script>
+
+
+
+</body></html>
