@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!-- saved from url=(0041)http://madebyluke.com/projects/santorini/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -65,7 +68,83 @@
 
 
             <div id="game" class="screen" style="display: none;">
-                GAME
+
+
+                <div class='hud' onclick='test2(event,this)'>
+                    <div id='p1' class='active player pos-float-left'>🐸</div>
+                    <div id='p2' class='player pos-float-right'>🐶</div>
+                    <div id='pos'></div>
+                    <div id='phase'><div class='pointer'></div><p></p></div>
+                </div>
+
+                <!--  GRID -->
+                <div class='board'>
+
+
+                    <div class='grid' data-row='5' data-col='5' onclick='test(event, this)'>
+                        <div class='meeples'>
+                            <div id='p1_1' class='meeple p1'></div>
+                            <div id='p1_2' class='meeple p1'></div>
+                            <div id='p2_1' class='meeple p2'></div>
+                            <div id='p2_2' class='meeple p2'></div>
+
+                        </div>
+                        
+                        <div class='row' id='r0'>
+                            <div id='c0' class='cell'></div>
+                            <div id='c1' class='cell'></div>
+                            <div id='c2' class='cell'></div>
+                            <div id='c3' class='cell'></div>
+                            <div id='c4' class='cell'></div>
+                        </div>
+                        <div class='row' id='r1'>
+                            <div id='c0' class='cell'></div>
+                            <div id='c1' class='cell'></div>
+                            <div id='c2' class='cell'></div>
+                            <div id='c3' class='cell'></div>
+                            <div id='c4' class='cell'></div>
+                        </div>
+                        <div class='row' id='r2'>
+                            <div id='c0' class='cell'></div>
+                            <div id='c1' class='cell'></div>
+                            <div id='c2' class='cell'></div>
+                            <div id='c3' class='cell'></div>
+                            <div id='c4' class='cell'></div>
+                        </div>
+                        <div class='row' id='r3'>
+                            <div id='c0' class='cell'></div>
+                            <div id='c1' class='cell'></div>
+                            <div id='c2' class='cell'></div>
+                            <div id='c3' class='cell'></div>
+                            <div id='c4' class='cell'></div>
+                        </div>
+                        <div class='row' id='r4'>
+                            <div id='c0' class='cell'></div>
+                            <div id='c1' class='cell'></div>
+                            <div id='c2' class='cell'></div>
+                            <div id='c3' class='cell'></div>
+                            <div id='c4' class='cell'></div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class='controls' data-phase='1'>
+                    <!-- 
+                    PHASE 1 - SELECT MEEPLE
+                    PHASE 2 - SELECT MOVE
+                    PHASE 3 - SELECT BUILD
+                    -->
+
+                    <div id='game_cancel' class='btn button pos-float-left'>cancel</div>
+                    <div id='game_select' class='btn button pos-float-left'>select</div>
+                    <div id='game_action' class='btn button pos-float-left'>action</div>
+                </div>
+
+
 
             </div>
 
@@ -81,4 +160,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>

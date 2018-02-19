@@ -76,3 +76,19 @@ body {
 .pos-float-right {
     float: right;
 }
+
+.hide {
+    display: none;
+}
+
+.btn.cancel {
+    background: #ec8153;
+    color: rgba(0,0,0,0.3);
+    box-shadow: 0px 5px 0px 0px #a55939;
+}
+
+.btn.confirm {
+    background: #85c76d;
+    color: rgba(0,0,0,0.3);
+    box-shadow: 0px 5px 0px 0px #5c8b4c;
+}

@@ -73,3 +73,211 @@ body {
 #lobby .controls div {
     margin-bottom: 0;
 }
+
+
+#game .board {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1.5);
+    background: #85c76d;
+    padding: 10px;
+    padding-bottom: 5px;
+    border: 2px solid #a5e08f;
+    border-right-color: #9c855d;
+    border-bottom: 5px solid #9c855d;
+    box-sizing: border-box;
+}
+
+#game .controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+}
+
+#game .hud .player {
+    font-size: 80px;
+    border: 2px solid #aeaeae;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 20px;
+    transform: scale(0.8);
+}
+
+#game .hud .player.active {
+    opacity: 1;
+    transform: scale(0.8);
+}
+#game .hud .player {
+    opacity: 0.3;
+    transform: scale(0.6);
+}
+
+#game .controls .btn {
+    width: 20%;
+    margin: 5px;
+    user-select: none;
+}
+#game .controls .btn.inactive {
+    background: #a2a2a2;
+    box-shadow: inset 0px 2px 0px 1px #919191;
+    color: rgba(0,0,0,0.1);
+}
+
+.grid {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    display: inline-block;
+    height: auto;
+}
+
+.grid .row {
+    float: left;
+    width: max-content;
+    height: max-content;
+    display: block;
+}
+
+.grid .cell {
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.1);
+    float: left;
+    margin: 2px;
+    display: inline-block;
+}
+
+.grid .cell.active {
+    border: 2px solid red;
+    box-sizing: border-box;
+}
+.grid .cell.range {
+    background: rgba(255,0,0,0.5);
+}
+.grid .cell.build {
+    background: rgba(0,0,255,0.5);
+}
+
+.grid .meeple {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s;
+    text-align: center;
+    /* padding-top: 5px; */
+    font-size: 24px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 2px solid #25532a;
+    border-color: transparent;
+    z-index: 100;
+}
+.grid .meeple.active {
+    border-color: red;
+}
+
+.grid .meeple.p1::after {
+    content: "🐸";
+}
+.grid .meeple.p2::after {
+    content: "🐶";
+}
+
+.tower {
+    background: white;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: relative;
+    border: 1px solid #c1c0c0;
+    box-sizing: border-box;
+}
+.tower.lv1 {
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 5%;
+}
+.tower.lv2 {
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 10%;
+}
+.tower.lv3 {
+    width: 70%;
+    height: 70%;
+    left: 15%;
+    top: 15%;
+}
+.tower.cap {
+    width: 90%;
+    height: 90%;
+    background: blue;
+    border-radius: 50px;
+    border-color: skyblue;
+    top: 5%;
+    left: 5%;
+}
+
+#phase { 
+    position: absolute;
+    top: 124px;
+    transform: translateX(-50%);
+    /* left: 50%; */
+    border: 2px solid #9c845d;
+    padding: 10px;
+    width: 100%;
+    /* margin: 20px; */
+    box-sizing: border-box;
+    text-align: center;
+    width: 90%;
+    background: #ecc580;
+    border-bottom-width: 4px;
+    border-top-color: rgba(255,255,255,0.5);
+    left: 50%;
+    /* margin-left: 0; */
+    border-left-color: rgba(255,255,255,0.5);
+}
+
+#phase .pointer {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    background: #edc67f;
+    padding: 0;
+    margin: 0;
+    left: 8%;
+    top:-13px;
+    transform: rotateZ(-45deg);
+    border-top: 2px solid #f6e3c0;
+    border-right: 2px solid #9b835d;
+    transition: left 0.2s;
+}
+#phase p {
+    padding: 0; margin: 0;
+}
+#phase.p1 .pointer {
+    left: 8%;
+}
+
+#phase.p2 .pointer {
+    left: 87%;
+}
+
+
+
+#pos p {
+    margin: 0; padding: 0;
+}
