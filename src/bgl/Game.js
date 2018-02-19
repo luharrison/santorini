@@ -27,6 +27,17 @@ Game.prototype.reset = function () {
 
 }
 
+Game.prototype.playerBuild = function(id) {
+    return {
+        'id': id,
+        active: false
+    }
+}
+
+Game.prototype.playerAddMeeple = function(id, meeple) {
+    
+}
+
 Game.prototype.gridBuild = function (tr, tc) {
     var newGrid = [];
 
@@ -105,6 +116,13 @@ Game.prototype.gridGetSurrounding = function(tr,tc) {
     }
     
     return cells;
+}
+
+Game.prototype.getPlayer = function(id) {
+    if (id < players.length) return this.players[id];
+    var dp = this.playerBuild(0);
+    dp.valid = false;
+    return dp;
 }
 
 Game.prototype.setPlayer = function (id) {
