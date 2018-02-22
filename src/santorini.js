@@ -9,6 +9,9 @@ var SCREEN_TITLE = 'title';
 var SCREEN_LOBBY = 'lobby';
 var SCREEN_GAME  = 'game';
 
+var GRID_WIDTH = 5;
+var GRID_HEIGHT = 5;
+
 var CELL_STATUS_LV0 = 0;
 var CELL_STATUS_LV1 = 1;
 var CELL_STATUS_LV2 = 2;
@@ -27,46 +30,14 @@ var PHASE_TIP_CONFIRM = 'Confirm this move?';
 var phaseTips = [PHASE_TIP_MEEPLE,PHASE_TIP_MOVE,PHASE_TIP_BUILD,PHASE_TIP_CONFIRM];
 
 window.onload = function() {
-    game = new Game();
-    game.display.show('title');
-
-    //game.board.addGrid(5,5);
-
-    game.gridBuild(5,5);
+    game = new Game();  
+    game.display.set(SCREEN_GAME);
+    resetBoard();
 };
 
-
-addEventListener('onScreenShow', function(e) {
-    if (e.id == 'title') {
-        //game.display.set(SCREEN_LOBBY);
-
-    }
-
-    if (e.id == 'lobby') {
-        
-        //reset interface
-        //get the current game from server
-
-    }
-
-    if (e.id == SCREEN_GAME) {
-        //doesn't work
-        setTimeout(function(){
-            resetBoard();
-        }, 1000)
-    }
-});
-
-addEventListener('onScreenHide', function(e) {
-
-    if (e.id == 'lobby') {
-        //empty the lobby stuff
-        //disable the join button
-        //reset it basically
-    }
-});
-
-
+//TODO
+//addEventListener('onScreenShow', function(e) {});
+//addEventListener('onScreenHide', function(e) {});
 
 addEventListener('onButtonClick', function(e) {
     if (e.id == 'new') {
@@ -110,14 +81,20 @@ addEventListener('onButtonClick', function(e) {
     }
 
     if (e.id == 'game_cancel') {
+
         switch (game.turnPhase) {
+
             case PHASE_MEEPLE: 
             break;
-            case PHASE_MOVE: setPhase(PHASE_MEEPLE);   break;
+
+            case PHASE_MOVE:
+            setPhase(PHASE_MEEPLE);  
+            break;
             
             case PHASE_BUILD: 
             moveMeeple(mor,moc);
-            setPhase(PHASE_MOVE);  break;
+            setPhase(PHASE_MOVE);
+            break;
 
 
             case PHASE_CONFIRM: 
@@ -125,23 +102,25 @@ addEventListener('onButtonClick', function(e) {
             var ac = avaliableMoves[activeMoveCell]; 
             var r = ac.row;
             var c = ac.col;      
-            var cell = game.gridGetCell(r,c);
+            var cell = game.grid.getCell(r,c);
             var cs = cell.status;
             var ncs = cs-1 >= 0 ? cs-1 : 0;
-            game.gridSetCellStatus(r,c,ncs);        
+            
+            cell = cell.setStatus(ncs);
+
             cell = getDivCell(r,c);
             cell.innerHTML = getTower(ncs);
             
-            setPhase(PHASE_BUILD); break;
+            setPhase(PHASE_BUILD);
+            break;
         }
     }
 
     if (e.id == 'game_select') {
-        console.log('select');
         switch (game.turnPhase) {
-            case PHASE_MEEPLE: toggleMeeple();         break;
-            case PHASE_MOVE: toggleCellActive();     break; //move
-            case PHASE_BUILD: toggleCellActive();     break; //build
+            case PHASE_MEEPLE:  toggleMeeple();         break; //pick
+            case PHASE_MOVE:    toggleCellActive();     break; //move
+            case PHASE_BUILD:   toggleCellActive();     break; //build
         }
     }
 
@@ -224,7 +203,7 @@ function resetBoard() {
     moveMeeple(3,3, getMeeple(2,2)); 
     setPhase(PHASE_MEEPLE);
 
-    game.gridBuild(5,5);
+    game.createGrid(GRID_WIDTH, GRID_HEIGHT);
 
     var cells = document.getElementsByClassName('cell');
     for (var i=0,cell; i<cells.length; i++) {
@@ -293,11 +272,11 @@ function prepareCellMoves() {
     var c = mp.getAttribute('data-col');
 
     //get status current cell
-    var currentCell = game.gridGetCell(r,c);
+    var currentCell = game.grid.getCell(r,c);
     var cs = currentCell.status;
 
     //get surrnuding cells
-    avaliableMoves = game.gridGetSurrounding(r,c);
+    avaliableMoves = game.grid.getSurrounding(r,c);
 
     //show move
     for (var i=0,c,m,invalid,tr,tc; i<avaliableMoves.length; i++) {
@@ -311,21 +290,26 @@ function prepareCellMoves() {
 
         //validate move
         if (m.status == CELL_STATUS_BLOCK) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
+            continue;
         } else if (cs == CELL_STATUS_LV0 && m.status > CELL_STATUS_LV1) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
+            continue;
         } else if (cs == CELL_STATUS_LV1 && m.status > CELL_STATUS_LV2) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
+            continue;
         } else if (cs == CELL_STATUS_LV2 && m.status > CELL_STATUS_LV3) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
+            continue;
         } 
-        
+
+        //has meeple
         if (hasMeeple(m.row,m.col)) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
         }
     }
@@ -344,25 +328,22 @@ function hasMeeple(r,c) {
     }   return false;
 }
 
-
 function prepareCellBuild() {
     avaliableMoves = [];
 
     var mp = getActiveMeeple();
-    var r = mp.getAttribute('data-row');
-    var c = mp.getAttribute('data-col');
+    var r = Number(mp.getAttribute('data-row'));
+    var c = Number(mp.getAttribute('data-col'));
 
     //get surrnuding cells
-    avaliableMoves = game.gridGetSurrounding(r,c);
+    avaliableMoves = game.grid.getSurrounding(r,c);
 
     //get status current cell
-    var currentCell = game.gridGetCell(r,c);
+    var currentCell = game.grid.getCell(r,c);
     var cs = currentCell.status;
-    console.log('current cell status is ' + currentCell.status);
 
     //show move
     for (var i=0,c,m,invalid,tc,tr; i<avaliableMoves.length; i++) {
-
 
         m = avaliableMoves[i];
         tr = m.row;
@@ -371,12 +352,13 @@ function prepareCellBuild() {
 
         //validate move
         if (m.status == CELL_STATUS_BLOCK) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
+            continue;
         } 
         
         if (hasMeeple(m.row,m.col)) {
-            avaliableMoves.splice(i,1);
+            avaliableMoves.splice(i--,1);
             invalid = true;
         }
     }
@@ -405,10 +387,6 @@ function toggleCellActive() {
     //get the row
     tc = getDivCell(cell.row, cell.col);
     tc.classList.add('active');
-    
-
-    //
-    //var theCell = document.getElementById();
 }
 
 var mor, moc;
@@ -460,10 +438,11 @@ function getMeeple(playerId,meepleId) {
 }
 
 function buildCell(r,c) {
-    var cell = game.gridGetCell(r,c);
+    var cell = game.grid.getCell(r,c);
     var cs = cell.status;
     var ncs = cs+1 <= CELL_STATUS_BLOCK ? cs+1 : CELL_STATUS_BLOCK;
-    game.gridSetCellStatus(r,c,ncs);
+    
+    game.grid.setCellStatus(r, c, ncs);
 
     //update the cell div
     var cd = getDivCell(r,c);
@@ -481,10 +460,8 @@ function getTower(lv) {
     return t;
 }
 
+
 function getDivCell(r,c) {
-    var cells = document.getElementsByClassName('cell');
-    var row = document.getElementById('r'+r);
-    
     var cell = document.querySelector("#r" + r + " #c" + c);
     return cell;
 }

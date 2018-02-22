@@ -1,37 +1,29 @@
-function GridCell(r,c) {
-    this.init(r,c);
-}
+class GridCell {
+    constructor(row, col, status) {
+        this.id = this.id;
+        this.row = row >= 0 ? row : 0;
+        this.col = col >= 0 ? col : 0;
+        this.status = status >= 0 ? status : 0;
+    }
 
-GridCell.prototype.id = 'r0_c0';
-GridCell.prototype.row = 0;
-GridCell.prototype.col = 0;
-GridCell.prototype.status = 0;
+    set id(value) {
+        //can't set id
+    }
+    get id() {
+        return 'r' + this.row + '_c' + this.col;
+    }
 
-GridCell.prototype.getId = function() {
-    return 'r' + this.row + '_c' + this.c;
-}
+    setStatus(s) {
+        this.status = s;
+    }
 
-GridCell.prototype.render = function() {
-    var id = this.getId();
-    var r = this.row;
-    var c = this.col;
-    return '<div id="'+id+'" class="cell" data-row="'+r+'" data-col="'+c+'"></div>';
-}
-
-Game.prototype.init = function (r,c) {
-    this.row = r;
-    this.col = c;
-}
-
-Game.prototype.reset = function () {
-
-}
-
-Game.prototype.gridBuild = function (r, c) {
-    var grid = [];
-
-    for (var i=0; i<(r*c); i++, c++) {
-        if (c >= c) {c=0; r++}
-        
+    render() {
+        var d = document.createElement('div');
+        d.setAttribute('id', this.id);
+        d.setAttribute('data-row', this.row);
+        d.setAttribute('data-col', this.col);
+        d.setAttribute('class', 'cell');
+        d.innerHTML = this.status;
+        return d;
     }
 }
