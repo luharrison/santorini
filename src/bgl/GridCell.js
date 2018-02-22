@@ -13,6 +13,13 @@ class GridCell {
         return 'r' + this.row + '_c' + this.col;
     }
 
+    set div(value) {
+
+    }
+    get div() {
+        return document.querySelector("#r" + this.row + " #c" + this.col);
+    }
+
     setStatus(s) {
         this.status = s;
     }

@@ -32,6 +32,7 @@ var phaseTips = [PHASE_TIP_MEEPLE,PHASE_TIP_MOVE,PHASE_TIP_BUILD,PHASE_TIP_CONFI
 window.onload = function() {
     game = new Game();  
     game.display.set(SCREEN_GAME);
+    game.createGrid(5,5);
     resetBoard();
 };
 
@@ -462,6 +463,13 @@ function getTower(lv) {
 
 
 function getDivCell(r,c) {
+    
+    console.log(game);
+
+    if (game.grid) {
+        return game.grid.getCell(r,c).div;
+    }
+
     var cell = document.querySelector("#r" + r + " #c" + c);
     return cell;
 }
