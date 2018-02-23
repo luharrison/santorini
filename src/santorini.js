@@ -96,7 +96,7 @@ addEventListener('onButtonClick', function(e) {
             case PHASE_MEEPLE: 
             case PHASE_MOVE:
             //setPhase(PHASE_MEEPLE);  
-            toggleMeeple();
+            toggleMeeple(1);
             setPhase(PHASE_MOVE);
             document.querySelector('#game_cancel .box').classList.toggle('flip');
             break;
@@ -532,10 +532,13 @@ function setPhase(id) {
 
     switch (id) {
         case PHASE_MEEPLE:
-        case PHASE_MOVE: prepareCellMoves();
+        case PHASE_MOVE:
+                toggleMeeple(meepleId);
+                prepareCellMoves();
                 toggleCellActive(0);
         break;
-        case PHASE_BUILD: prepareCellBuild();
+        case PHASE_BUILD:
+                prepareCellBuild();
                 toggleCellActive(0);
                 break;
         case PHASE_CONFIRM: //confirm break;
