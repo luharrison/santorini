@@ -10,6 +10,10 @@
 
     <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
     
+    <!-- mbl stuff -->
+    <script src="src/mbl/Button3D.js"></script>
+    <link rel="stylesheet" href="src/mbl/Button3D.css">
+
     <!-- boardgamelib -->   
     <script src="src/bgl/DisplayManager.js"></script>
 
@@ -18,7 +22,7 @@
     <script src="src/bgl/GridCell.js"></script>
     <script src="src/bgl/Grid.js"></script>
 
-    
+
     <script src="src/bgl/Game.js"></script>
     <link rel="stylesheet" href="src/bgl/bgl.css">
     <!-- santorini -->
@@ -142,16 +146,16 @@
 
 
 
-                <div class='controls' data-phase='1'>
+                <div id='controls' class='controls' data-phase='0'>
                     <!-- 
                     PHASE 1 - SELECT MEEPLE
                     PHASE 2 - SELECT MOVE
                     PHASE 3 - SELECT BUILD
                     -->
 
-                    <div id='game_cancel' class='btn button pos-float-left'>cancel</div>
-                    <div id='game_select' class='btn button pos-float-left'>select</div>
-                    <div id='game_action' class='btn button pos-float-left'>action</div>
+                    <div id='game_cancel' class='btn threed pos-float-left'></div>
+                    <div id='game_select' class='btn threed pos-float-left'></div>
+                    <div id='game_action' class='btn threed pos-float-left'></div>
                 </div>
 
 

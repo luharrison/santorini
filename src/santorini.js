@@ -24,8 +24,8 @@ var PHASE_BUILD = 2;
 var PHASE_CONFIRM = 3;
 
 var PHASE_TIP_MEEPLE = 'Select your meeple!';
-var PHASE_TIP_MOVE = 'Move to a new space';
-var PHASE_TIP_BUILD = 'Build or upgrade a tower';
+var PHASE_TIP_MOVE = 'Select and Move your meeple!';
+var PHASE_TIP_BUILD = 'Build or Finish a tower!';
 var PHASE_TIP_CONFIRM = 'Confirm this move?';
 var phaseTips = [PHASE_TIP_MEEPLE,PHASE_TIP_MOVE,PHASE_TIP_BUILD,PHASE_TIP_CONFIRM];
 
@@ -34,6 +34,14 @@ window.onload = function() {
     game.display.set(SCREEN_GAME);
     game.createGrid(5,5);
     resetBoard();
+
+    // build 3d buttons
+    var btns = ['action','cancel','select'];
+    for (var i=0,btn,ico; i<btns.length; i++) {
+       btn = createButton3D(120, 60, 10, 'game_'+btns[i]);
+    }
+
+    setPhase(PHASE_MOVE);
 };
 
 //TODO
@@ -86,10 +94,11 @@ addEventListener('onButtonClick', function(e) {
         switch (game.turnPhase) {
 
             case PHASE_MEEPLE: 
-            break;
-
             case PHASE_MOVE:
-            setPhase(PHASE_MEEPLE);  
+            //setPhase(PHASE_MEEPLE);  
+            toggleMeeple();
+            setPhase(PHASE_MOVE);
+            document.querySelector('#game_cancel .box').classList.toggle('flip');
             break;
             
             case PHASE_BUILD: 
@@ -136,7 +145,11 @@ addEventListener('onButtonClick', function(e) {
             case PHASE_BUILD: 
                     cell = avaliableMoves[activeMoveCell];
                     buildCell(cell.row, cell.col);
-                    setPhase(PHASE_CONFIRM);  break;
+                    
+                    //setPhase(PHASE_CONFIRM);  
+                    endTurn();
+                    
+                    break;
             case PHASE_CONFIRM: endTurn(); break;
         }
     }
@@ -162,6 +175,7 @@ function onLobbySelectRoom(id) {
 }
 
 function test(t,e) {
+    //onCellClick
     
     var target = t.target;
 
@@ -202,7 +216,6 @@ function resetBoard() {
     moveMeeple(1,3, getMeeple(1,2));
     moveMeeple(3,1, getMeeple(2,1));
     moveMeeple(3,3, getMeeple(2,2)); 
-    setPhase(PHASE_MEEPLE);
 
     game.createGrid(GRID_WIDTH, GRID_HEIGHT);
 
@@ -239,11 +252,12 @@ function updatePlayer() {
 }
 
 var meepleId = 1;
-function toggleMeeple() {
+function toggleMeeple(id) {
 
     console.log('toogleMeeple ' +  meepleId);
     
     meepleId = meepleId == 1 ? 2 : 1;
+    if (id > 0) meepleId = id;
 
     var ps = document.getElementsByClassName('meeple');
     for (var i=0; i<ps.length; i++) {
@@ -476,7 +490,10 @@ function getDivCell(r,c) {
 
 function setPhase(id) {
     game.turnPhase = id;
+
     //update the controls
+    var ctrls = document.getElementById('controls');
+    ctrls.setAttribute('data-phase', id);
 
     //remove the default range
     var ps = document.getElementsByClassName('cell');
@@ -515,7 +532,6 @@ function setPhase(id) {
 
     switch (id) {
         case PHASE_MEEPLE:
-         break;
         case PHASE_MOVE: prepareCellMoves();
                 toggleCellActive(0);
         break;
@@ -529,6 +545,6 @@ function setPhase(id) {
 function endTurn() {  
     game.nextPlayer();
     updatePlayer();
-    setPhase(PHASE_MEEPLE);
+    setPhase(PHASE_MOVE);
     
 }

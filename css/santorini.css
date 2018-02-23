@@ -91,6 +91,8 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
+    width: fit-content;
+    height: fit-content;
     transform: translate(-50%,-50%) scale(1.5);
     background: #85c76d;
     padding: 10px;
@@ -131,6 +133,94 @@ body {
     transform: scale(0.6);
 }
 
+#game .controls .btn.threed {
+    margin: 5px;
+}
+
+.btn.threed .face.front,
+.btn.threed .face.back {
+    background: url(../img/btn_bg.png);
+    background-size: cover;
+    border: 2px solid grey;
+}
+
+.btn.threed .face.top, 
+.btn.threed .face.bottom {
+    background: grey;
+}
+
+.btn.threed .face .icon {
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+    user-select: none;
+}
+
+[data-phase="0"] #game_cancel.btn.threed .box,
+[data-phase="1"] #game_cancel.btn.threed .box {
+    transform: rotateX(0deg);
+}
+
+[data-phase="2"] #game_cancel.btn.threed .box {
+    /*transform: rotateX(-180deg);*/
+}
+
+[data-phase="2"] #game_cancel.btn.threed .box.flip {
+    transform: rotateX(0deg) rotateY(180deg);
+}
+
+[data-phase="1"] #game_cancel.btn.threed .box.flip {
+    transform: rotateY(180deg);
+}
+[data-phase="1"] #game_cancel.btn.threed .box.flip .face.back .icon{
+    background: url(../img/icon_swap.png);
+    background-size: cover;
+    transform: scale(1,-1);
+}
+
+
+
+#game_select .face.front .icon {
+    background: url(../img/icon_select.png);
+    background-size: cover;
+}
+#game_cancel .face.front .icon {
+    background: url(../img/icon_swap.png);
+    background-size: cover;
+}
+[data-phase="2"] #game_cancel .face.front .icon,
+[data-phase="2"] #game_cancel .face.back .icon {
+    background: url(../img/icon_cancel.png);
+    background-size: cover;
+}
+
+
+[data-phase="0"] #game_action.btn .face.front .icon {
+    background: url(../img/icon_confirm.png);
+    background-size: cover;
+}
+[data-phase="0"] #game_action.btn.threed .box {
+    transform: rotateX(0deg);
+}
+
+[data-phase="1"] #game_action.btn .face.back .icon {
+    background: url(../img/icon_move.png);
+    background-size: cover;
+}
+[data-phase="1"] #game_action.btn.threed .box {
+    transform: rotateX(180deg);
+}
+
+[data-phase="2"] #game_action.btn .face.front .icon {
+    background: url(../img/icon_build.png);
+    background-size: cover;
+}
+[data-phase="2"] #game_action.btn.threed .box {
+    transform: rotateX(0deg);
+}
+
+/*
+
 #game .controls .btn {
     width: 20%;
     margin: 5px;
@@ -141,6 +231,7 @@ body {
     box-shadow: inset 0px 2px 0px 1px #919191;
     color: rgba(0,0,0,0.1);
 }
+*/
 
 .grid {
     width: fit-content;
@@ -151,9 +242,6 @@ body {
 }
 
 .grid .row {
-    float: left;
-    width: max-content;
-    height: max-content;
     display: block;
 }
 
