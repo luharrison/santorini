@@ -38,7 +38,7 @@ window.onload = function() {
     // build 3d buttons
     var btns = ['action','cancel','select'];
     for (var i=0,btn,ico; i<btns.length; i++) {
-       btn = createButton3D(120, 60, 10, 'game_'+btns[i]);
+       btn = createButton3D(120, 80, 20, 'game_'+btns[i]);
     }
 
     setPhase(PHASE_MOVE);

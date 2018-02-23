@@ -141,18 +141,24 @@ body {
 .btn.threed .face.back {
     background: url(../img/btn_bg.png);
     background-size: cover;
-    border: 2px solid grey;
+    border: 5px solid #676666;
+    border-right: 3px solid #676666;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+
 }
 
 .btn.threed .face.top, 
-.btn.threed .face.bottom {
+.btn.threed .face.bottom,
+.btn.threed .face.left,
+.btn.threed .face.right {
     background: grey;
 }
 
 .btn.threed .face .icon {
-    width: 40px;
-    height: 40px;
-    margin: 10px auto;
+    width: 50px;
+    height: 50px;
+    margin: 15px auto;
     user-select: none;
 }
 
@@ -172,6 +178,14 @@ body {
 [data-phase="1"] #game_cancel.btn.threed .box.flip {
     transform: rotateY(180deg);
 }
+
+.box.flip .face.back {
+    border-top: 5px solid #676666;
+    border-left: 3px solid #676666;
+    border-bottom: 2px solid grey;
+    border-right: 2px solid grey;
+}
+
 [data-phase="1"] #game_cancel.btn.threed .box.flip .face.back .icon{
     background: url(../img/icon_swap.png);
     background-size: cover;
@@ -232,6 +246,13 @@ body {
     color: rgba(0,0,0,0.1);
 }
 */
+#game_select .box {
+    transition: 0.1s transform ease-out;
+}
+#game_select:active .box {
+    transition: none;
+    transform: scale(0.9);
+}
 
 .grid {
     width: fit-content;
