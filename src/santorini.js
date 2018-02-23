@@ -94,9 +94,8 @@ addEventListener('onButtonClick', function(e) {
         switch (game.turnPhase) {
 
             case PHASE_MEEPLE: 
-            case PHASE_MOVE:
-            //setPhase(PHASE_MEEPLE);  
-            toggleMeeple(1);
+            case PHASE_MOVE: 
+            toggleMeeple();
             setPhase(PHASE_MOVE);
             document.querySelector('#game_cancel .box').classList.toggle('flip');
             break;
@@ -388,9 +387,10 @@ function prepareCellBuild() {
 var avaliableMoves = [];
 var activeMoveCell = 0;
 
-function toggleCellActive() {
+function toggleCellActive(id) {
 
     activeMoveCell = activeMoveCell+1 < avaliableMoves.length ? activeMoveCell+1 : 0;
+    if (id >= 0) activeMoveCell = id;
     var cell = avaliableMoves[activeMoveCell];
 
     //remove active 
