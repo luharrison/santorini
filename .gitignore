@@ -6,6 +6,7 @@
 # Exclude build/release directory
 dist
 release
+psd
 
 # Icon must end with two \r
 Icon
