@@ -100,3 +100,15 @@ body {
     background-position-x: 5px !important;
     opacity: 0.6;
 }
+
+/* BUTTON MOVE */
+
+
+[data-target="up"] #controls[data-phase="1"] #game_action.btn .face.back .icon {
+    background: url(../img/icon_move_up.png);
+    background-size: cover;
+}
+[data-target="down"] #controls[data-phase="1"] #game_action.btn .face.back .icon {
+    background: url(../img/icon_move_down.png);
+    background-size: cover;
+}
