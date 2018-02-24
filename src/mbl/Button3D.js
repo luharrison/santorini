@@ -1,6 +1,6 @@
 /* https://codepen.io/anon/pen/mXjJod */
 
-function createButton3D(width, height, depth, target) {
+function createButton3D(width, height, depth, target, flipDir) {
 
     var faces = ['front','back','left','right','top','bottom'];
     var types = [1,1,2,2,3,3];
@@ -48,7 +48,12 @@ function createButton3D(width, height, depth, target) {
             f.style.transform = 'translateZ('+dh+'px)';
             break;
             case 'back': 
-            f.style.transform = 'translateZ(-'+dh+'px) scaleY(-1)';
+            if (flipDir != 'hori') {
+                f.style.transform = 'translateZ(-'+dh+'px) scaleX(-1) scaleY(1)';
+            } else {
+                f.style.transform = 'translateZ(-'+dh+'px) scaleY(-1)';
+            }
+            
             break;
             case 'left': f.style.left = d;
             f.style.transformOrigin = 'right center';

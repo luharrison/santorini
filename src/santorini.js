@@ -38,7 +38,10 @@ window.onload = function() {
     // build 3d buttons
     var btns = ['action','cancel','select'];
     for (var i=0,btn,ico; i<btns.length; i++) {
-       btn = createButton3D(120, 80, 20, 'game_'+btns[i]);
+       btn = createButton3D(120, 80, 20, 'game_'+btns[i], i==0 ? 'hori' : 'vert');
+       if (i==0) {
+           //make it horizontal
+       }
     }
 
     setPhase(PHASE_MOVE);
@@ -402,6 +405,9 @@ function toggleCellActive(id) {
     //get the row
     tc = getDivCell(cell.row, cell.col);
     tc.classList.add('active');
+
+    var g = document.getElementById('game');
+    g.setAttribute('data-target', cell.status);
 }
 
 var mor, moc;
@@ -440,11 +446,13 @@ function updateMeeplePosition(mp, r, c) {
     var m = (pid)+(mid-1);
     meeplePositions[m] = {row: r, col: c};
 
+    /*
     var s = '';
     for (var i=0; i<meeplePositions.length; i++) {
         s = s.concat('<p>'+meeplePositions[i].row+','+meeplePositions[i].col+'</p>');
     }
     document.getElementById('pos').innerHTML = s;
+    */
 }
 
 function getMeeple(playerId,meepleId) {

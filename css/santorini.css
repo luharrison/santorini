@@ -156,9 +156,9 @@ body {
 }
 
 .btn.threed .face .icon {
-    width: 50px;
-    height: 50px;
-    margin: 15px auto;
+    width: 70%;
+    height: 70%;
+    margin: 10% auto;
     user-select: none;
 }
 
@@ -180,17 +180,12 @@ body {
 }
 
 .box.flip .face.back {
-    border-top: 5px solid #676666;
+    /*border-top: 5px solid #676666;
     border-left: 3px solid #676666;
     border-bottom: 2px solid grey;
-    border-right: 2px solid grey;
+    border-right: 2px solid grey;*/
 }
 
-[data-phase="1"] #game_cancel.btn.threed .box.flip .face.back .icon{
-    background: url(../img/icon_swap.png);
-    background-size: cover;
-    transform: scale(1,-1);
-}
 
 
 
@@ -198,10 +193,15 @@ body {
     background: url(../img/icon_select.png);
     background-size: cover;
 }
-#game_cancel .face.front .icon {
-    background: url(../img/icon_swap.png);
+[data-phase="1"] #game_cancel .face.front .icon {
+    background: url(../img/icon_swap_1.png);
     background-size: cover;
 }
+[data-phase="1"] #game_cancel .face.back .icon {
+    background: url(../img/icon_swap_2.png);
+    background-size: cover;
+}
+
 [data-phase="2"] #game_cancel .face.front .icon,
 [data-phase="2"] #game_cancel .face.back .icon {
     background: url(../img/icon_cancel.png);
@@ -227,8 +227,23 @@ body {
 
 [data-phase="2"] #game_action.btn .face.front .icon {
     background: url(../img/icon_build.png);
-    background-size: cover;
+    background-size: cover !important;
 }
+
+[data-target="0"] #controls[data-phase="2"] #game_action.btn .face.front .icon {
+    background: url(../img/icon_build_1.png);
+}
+[data-target="1"] #controls[data-phase="2"] #game_action.btn .face.front .icon {
+    background: url(../img/icon_build_2.png);
+}
+[data-target="2"] #controls[data-phase="2"] #game_action.btn .face.front .icon {
+    background: url(../img/icon_build_3.png);
+}
+[data-target="3"] #controls[data-phase="2"] #game_action.btn .face.front .icon {
+    background: url(../img/icon_build_4.png);
+}
+
+
 [data-phase="2"] #game_action.btn.threed .box {
     transform: rotateX(0deg);
 }

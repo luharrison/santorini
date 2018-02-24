@@ -1,0 +1,102 @@
+/* BACKGROUND */
+
+body {
+    background-image: linear-gradient(to bottom, #48c6ef 40%, #5472c7 100%);
+    background-size: cover !important;
+    height: 750px;
+}
+
+#game .board {
+    background-image: linear-gradient(to top, #59ae14 0%, #6fd363 100%);
+    border: 2px solid #6bbb35;
+    border-top-color: #b8e255;
+    border-right-color: #588946;
+    border-bottom: 5px solid #5f5f2b;
+}
+
+#game .tower {
+    background-image: linear-gradient(to top, #dddee0 0%, #fefeff 100%);
+    border: 1px solid #9a9ea2;
+    box-shadow: 1px 2px 2px 0px #4f5780;
+}
+
+#game .tower.lv1 {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 5%;
+
+    /*box-shadow: inset 0px 0px 1px 0px #4f5780;*/
+}
+
+#game .tower.lv2 {
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 5%;
+}
+
+#game .tower.lv3 {
+    width: 85%;
+    height: 85%;
+    left: 7%;
+    top: 7%;
+}
+
+#game .tower.cap {
+    width: 90%;
+    height: 90%;
+    background: blue;
+    border-radius: 50px;
+    border-color: #776fd5;
+    top: 5%;
+    left: 5%;
+    background-image: linear-gradient(-20deg, #67158c 0%, #1dc0ff 100%);
+}
+
+
+#game .range .tower {
+    background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
+}
+
+#game .build .tower {
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+}
+
+/* SELECTORS */
+
+.nicered {
+    background: #f32b0c;
+}
+
+/* BUTTON */
+
+.btn.threed .face.front,
+.btn.threed .face.back {
+    background-image: linear-gradient(to bottom, #fdfcfb 0%, #e2d1c3 100%);
+    background-size: cover;
+    border: 6px solid #a69f9a;
+    border-right: 3px solid #beb6af;
+    border-top: 2px solid #e5d5c8;
+    border-left: 2px solid #ecdfd6;
+}
+
+.btn.threed .face.top,
+.btn.threed .face.bottom {
+    background: #a69f9a;
+}
+
+.face .icon {
+    border: 2px solid #e4d3c6;
+    border-bottom: none;
+    border-right: none;
+    padding: 5px;
+    margin: 5px 5px auto !important;
+    background-position-x: 5px !important;
+    opacity: 0.6;
+}
