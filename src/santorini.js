@@ -2,6 +2,7 @@
 don't move on meeples
 don't move or build on blocks
 highlighting is off when items removed
+https://codepen.io/anon/pen/oEyyyV?editors=1111 -- board css
 */
 
 var game;
